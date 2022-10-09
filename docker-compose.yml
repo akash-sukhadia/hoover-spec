@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  hoover:
+    image: akash1702/hoover:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/hoover
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  postgres:
+    image: postgres:11-alpine
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=hoover
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root

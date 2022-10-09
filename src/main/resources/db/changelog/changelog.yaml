@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable
+      author: akash-sukhadia
+      changes:
+        - preConditions:
+            - onFail: MARK_RAN
+              not:
+                tableExists:
+                  tableName: hover_spec
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: hoover_spec_pk
+              - column:
+                  name: room_size
+                  type: JSON
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_position
+                  type: JSON
+                  constraints:
+                    nullable: false
+              - column:
+                  name: patches
+                  type: JSON
+              - column:
+                  name: instructions
+                  type: TEXT
+              - column:
+                  name: cleaned_patched
+                  type: JSON
+              - column:
+                  name: end_position
+                  type: JSON
+                  constraints:
+                    nullable: false
+            tableName: hoover_spec
